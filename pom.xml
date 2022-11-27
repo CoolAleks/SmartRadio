@@ -7,11 +7,13 @@
     <groupId>org.example</groupId>
     <artifactId>SmartRadio</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
     <dependencies>
         <dependency>
@@ -20,7 +22,6 @@
             <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -29,5 +30,46 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <!-- surefire-plugin нужен для работы с Junit 5 (для запуска автотестов) -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <failIfNoTests>true</failIfNoTests> <!-- сборка упадёт, если в ней не будет тестов) -->
+                </configuration>
+            </plugin>
 
+
+            <plugin>
+                <!-- jacoco-maven-plugin нужен для проверки покрытия кода -->
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <!-- id (придумываем сами) -->
+                        <id>prepare-agent-123456</id>
+                        <phase>initialize
+                        </phase> <!-- Можно не писать фазы, т.к. они зашиты в целях (если нет необходимости их переназначить)-->
+
+                        <goals>
+                            <!-- какую цель выполняем-->
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <!-- id (придумываем сами) -->
+                        <id>report-1233456786</id>
+                        <goals>
+                            <!-- какую цель выполняем) -->
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

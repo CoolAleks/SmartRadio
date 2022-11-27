@@ -32,7 +32,6 @@ class RadioTest {
         int expected = 0;
         assertEquals(expected, actual);
 
-
     }
 
     @Test
@@ -45,6 +44,14 @@ class RadioTest {
 
     }
 
+    @Test
+    void shouldNextStationSetInValue() {
+        Radio myRadio3 = new Radio(12,9);
+        int actual = myRadio3.nextStation();
+        int expected = 12;
+        assertEquals(expected, actual);
+
+    }
     @Test
     void shouldNextStationSet1() {
         myRadio.setCurrentStation(0);
